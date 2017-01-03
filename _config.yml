@@ -1,6 +1,6 @@
 # Site
-title:              Zlatan Kremonic
-bio:                'Human learning machine learning'
+title:              Moon
+bio:                'Minimal, one column jekyll theme.'
 description:        "Moon is a minimal, one column jekyll theme for your blog."
 reading_time:       true
 words_per_minute:   200
@@ -8,7 +8,7 @@ logo:               'assets/img/logo.png'
 background:         'assets/img/placeholder-big.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
-url:                http://zlatankr.github.io/
+url:                zlatankr.github.io/Moon
 
 # Jekyll
 permalink:          /:title/
@@ -26,7 +26,7 @@ sass:
   style:            compressed
 
 # Comments
-disqus_shortname:   zlatankr
+disqus_shortname:   taylantatli
 
 # Social
 # if you don't have any of social below, comment the line.
@@ -37,7 +37,7 @@ disqus_shortname:   zlatankr
   #ad-client:
   #ad-slot:
 #bing-verify:
-#email:
+##email:
 #twitter:            username
 #facebook:           username
 github-url:         zlatankr
@@ -62,13 +62,14 @@ github-url:         zlatankr
 #hackernews:        username
 
 # Gems
-# # - jekyll-mentions
- # - jekyll-feed
- # - jekyll-sitemap
- # - jekyll-gist
+#gems:
+  #- jekyll-mentions
+  #- jekyll-feed
+  #- jekyll-sitemap
+  #- jekyll-gist
 
-jekyll-mentions:
-    base_url: https://github.com
+#jekyll-mentions:
+#    base_url: https://github.com
 
 # Exclude list
 #exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
