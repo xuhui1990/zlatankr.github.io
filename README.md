@@ -1,4 +1,4 @@
-## Zlatan Kremonics Website
+## Zlatan Kremonic's Website
 
 This repo contains all essential elements for my Jekyll/Gihub Pages website.
 
