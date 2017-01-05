@@ -20,16 +20,12 @@ comments: false
 
 ### **Senior Manager of Analytics** , InsideTrack. San Francisco, CA. Jan 2014 – Oct 2016
 
-Ongoing Duties:
-
 - Managed team of analysts responsible for internal and external reporting, performance measurement, modeling, and decision algorithms.
 - Developed standard internal and external metrics, reports, and dashboards.
 - Built out infrastructure for automated development and delivery of all analytics products.
 - Partnered with stakeholders to ensure they have proper visibility into performance; collaborated with upstream teams to ensure data flow is calibrated toward organizational reporting.
 
 ### **Senior Analyst** , InsideTrack. San Francisco, CA. Feb 2012 – Jan 2014
-
-Ongoing Duties:
 
 - Automated client and internal reporting through T-SQL, SSRS, and Tableau Server.
 - Measured and communicated impact of coaching on student enrollment and retention.
@@ -39,16 +35,12 @@ Ongoing Duties:
 
 Notable:
 
-- Developed and implemented a trigger-based reactive coaching algorithm to score students based on daily class activity and other metrics.
-- Led an executive-level team project to perform a gap analysis of the current and future state of our analytics work stream.
+- Developed and implemented a trigger-based coaching intervention algorithm targeting high-risk students.
+- Led an executive-level project to perform a gap analysis of the current and future state of our analytics work stream.
 - Led trainings on various subjects (Excel, PowerPivot, SQL, SSRS, statistics).
 - Won the &#39;Spirit of InsideTrack&#39; award (most motivated and motivating) within first five months of employment.
 
-
-
 ### **Macroeconomics Instructor** , San Francisco State University, CA. Jan 2011 – Jan 2012
-
-Ongoing Duties:
 
 - Instructor for Introduction to Macroeconomics.
 - Created and planned out course curriculum.
@@ -59,8 +51,6 @@ Notable:
 
 ### **Data Coordinator** , StubHub, San Francisco, CA. Jun 2011 – Jan 2012
 
-Ongoing Duties:
-
 - Gathered, manipulated, and uploaded of all venue seating data through extensive use of Excel, SQL, and internal databases.
 - Coordinated between various internal and third-party teams.
 
@@ -68,11 +58,7 @@ Notable:
 
 - Performed research project analyzing venue sales and events data to project demand and areas of growth.
 
-
-
 ### **Assistant Market Research Analyst** , VLSI Research, Santa Clara, CA. Oct 2007 – May 2009
-
-Ongoing Duties:
 
 - Financial analysis, forecasting, and market research of hundreds of companies in the semiconductor equipment and related industries.
 - Created, updated, and analyzed Excel-based models.
