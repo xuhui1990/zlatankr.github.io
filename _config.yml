@@ -8,7 +8,7 @@ logo:               'assets/img/logo.png'
 background:         'assets/img/Optimized-moon.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
-#url:                zlatankr.github.io/
+url:                zlatankr.github.io/
 
 # Jekyll
 permalink:          /posts/:year/:month/:day/:title
@@ -73,3 +73,15 @@ linkedin:          zlatankr
 
 # Exclude list
 exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]
+
+sitemap:
+    filename: "/sitemap.xml"
+    exclude:
+        - "/atom.xml"
+        - "/feed.xml"
+        - "/feed/index.xml"
+    include_posts:
+        - "/index.html"
+        - "/posts/index.md"
+    change_frequency_name: "change_frequency"
+    priority_name: "priority"
