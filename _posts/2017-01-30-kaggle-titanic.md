@@ -9,7 +9,7 @@ comments: true
 
 This document is a thorough overview of my process for building a predictive model for Kaggle's Titanic competition. I will provide all my essential steps in this model as well as the reasoning behind each decision I made. This model achieves a score of 82.78%, which is in the top 3% of all submissions at the time of this writing. This is a great introductory modeling exercise due to the simple nature of the data, yet there is still a lot to be gleaned from following a process that ultimately yields a high score. 
 
-### The Problem
+## The Problem
 
 We are given information about a subset of the Titanic population and asked to build a predictive model that tells us whether or not a given passenger survived the shipwreck. We are given 10 basic explanatory variables, including passenger gender, age, and price of fare, among others. More details about the competition can be found on the Kaggle site, [here](https://www.kaggle.com/c/titanic). This is a classic binary classification problem, and we will be implementing a random forest classifer.
 
@@ -18,7 +18,7 @@ We are given information about a subset of the Titanic population and asked to b
 - [Hyperparameter Tuning](#hyper)
 - [Model Estimation and Evaluation](#model)
 
-### Exploratory Data Analysis<a name="eda"></a>
+## Exploratory Data Analysis<a name="eda"></a>
 
 The goal of this section is to gain an understanding of our data in order to inform what we do in the feature engineering section.  
 
@@ -179,7 +179,7 @@ train.head()
 
 
 
-## Survived
+#### Survived
 
 So we can see that 62% of the people in the training set died. This is slightly less than the estimated 67% that died in the actual shipwreck (1500/2224).
 
@@ -213,7 +213,7 @@ sns.countplot(train['Survived'])
 ![png](/assets/img/Titanic%20Model%20Walk-Through_15_1.png)
 
 
-## Pclass
+#### Pclass
 
 Class played a critical role in survival, as the survival rate decreased drastically for the lowest class. This variable is both useful and clean, and I will be treating it as a categorical variable. 
 
@@ -248,7 +248,7 @@ sns.countplot(train['Pclass'], hue=train['Survived'])
 ![png](/assets/img/Titanic%20Model%20Walk-Through_18_1.png)
 
 
-## Name  
+#### Name  
 
 The `Name` column as provided cannot be used in the model. However, we might be able to extract some meaningful information from it.
 
@@ -371,7 +371,7 @@ pd.qcut(train['Name_Len'],5).value_counts()
 
 
 
-## Sex
+#### Sex
 
 "Women and children first," goes the famous saying. Thus, we should expect females to have a higher survival rate than males, and indeed that is the case. We expect this variable to be very useful in our model.
 
@@ -404,7 +404,7 @@ train['Survived'].groupby(train['Sex']).mean()
 
 
 
-## Age
+#### Age
 
 There are 177 nulls for `Age`, and they have a 10% lower survival rate than the non-nulls. Before imputing values for the nulls, we will include an `Age_null` flag just to make sure we can account for this characteristic of the data. 
 
@@ -460,7 +460,7 @@ pd.qcut(train['Age'],5).value_counts()
 
 
 
-## SibSp  
+#### SibSp  
 
 Upon first glance, I'm not too convinced of the importance of this variable. The distribution and survival rate between the different categories does not give me much hope.
 
@@ -503,7 +503,7 @@ train['SibSp'].value_counts()
 
 
 
-## Parch
+#### Parch
 
 Same conclusions as `Sibsp`: passengers with zero parents or children had a lower likelihood of survival than otherwise, but that survival rate was only slightly less than the overall population survival rate. 
 
@@ -548,7 +548,7 @@ train['Parch'].value_counts()
 
 When we have two seemingly weak predictors, one thing we can do is combine them to get a stronger predictor. In the case of `SibSp` and `Parch`, we can combine the two variables to get a 'family size' metric, which might (and in fact does) prove to be a better predictor than the two original variables. 
 
-## Ticket  
+#### Ticket  
 
 The `Ticket` column seems to contain unique alphanumeric values, and is thus not very useful on its own. However, we might be able to extract come predictive power from it. 
 
@@ -700,7 +700,7 @@ train.groupby(['Ticket_Lett'])['Survived'].mean()
 
 
 
-## Fare
+#### Fare
 
 There is a clear relationship between `Fare` and `Survived`, and I'm guessing that this relationship is similar to that of `Class` and `Survived`.
 
@@ -798,7 +798,7 @@ pd.crosstab(pd.qcut(train['Fare'], 5), columns=train['Pclass'])
 
 
 
-## Cabin
+#### Cabin
 
 This column has the most nulls (almost 700), but we can still extract information from it, like the first letter of each cabin, or the cabin number. The usefulness of this column might be similar to that of the `Ticket` variable.
 
@@ -908,7 +908,7 @@ train['Survived'].corr(train['Cabin_num'])
 
 
 
-## Embarked
+#### Embarked
 
 Looks like the Cherbourg people had a 20% higher survival rate than the other embarking locations. This is very likely due to the high presence of upper-class passengers from that location.
 
@@ -974,7 +974,7 @@ sns.countplot(train['Embarked'], hue=train['Pclass'])
 ![png](/assets/img/Titanic%20Model%20Walk-Through_74_1.png)
 
 
-### Feature Engineering<a name="feat"></a>
+## Feature Engineering<a name="feat"></a>
 
 Having done our cursory exploration of the variables, we now have a pretty good idea of how we want to transform our variables in preparation for our final dataset. We will perform our feature engineering through a series of helper functions that each serve a specific purpose. 
 
@@ -1136,7 +1136,7 @@ len(train.columns)
 
 
 
-### Hyperparameter Tuning<a name="hyper"></a>
+## Hyperparameter Tuning<a name="hyper"></a>
 
 We will use grid search to identify the optimal parameters of our random forest model. Because our training dataset is quite small, we can get away with testing a wider range of hyperparameter values. When I ran this on my 8 GB Windows machine, the process took less than ten minutes. 
 
@@ -1177,7 +1177,7 @@ print(gs.best_params_)
     {'min_samples_split': 10, 'n_estimators': 700, 'criterion': 'gini', 'min_samples_leaf': 1}
     
 
-### Model Estimation and Evaluation<a name="model"></a>
+## Model Estimation and Evaluation<a name="model"></a>
 
 We are now ready to fit our model using the optimal hyperparameters. The out-of-bag score can give us an unbiased estimate of the model accuracy, and we can see that the score is 82.94%, which is only a little higher than our final leaderboard score.
 

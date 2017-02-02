@@ -24,6 +24,7 @@ comments: false
 - Developed standard internal and external metrics, reports, and dashboards.
 - Built out infrastructure for automated development and delivery of all analytics products.
 - Partnered with stakeholders to ensure they have proper visibility into performance; collaborated with upstream teams to ensure data flow is calibrated toward organizational reporting.
+- Maintained a portfolio of clients as an analyst while leading team.
 
 ### **Senior Analyst** , InsideTrack. San Francisco, CA. Feb 2012 – Jan 2014
 
