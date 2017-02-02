@@ -9,7 +9,7 @@ background:         'assets/img/Optimized-moon.jpg'
 tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
 locale:             en_US
 #url:                zlatankr.github.io/
-production_url:     https://zlatankr.github.io
+production_url:     zlatankr.github.io
 
 # Jekyll
 permalink:          /posts/:year/:month/:day/:title
