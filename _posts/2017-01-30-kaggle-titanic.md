@@ -3,7 +3,7 @@ layout: post
 title: "Who will survive the shipwreck?!"
 date: 2017-01-30
 excerpt: "Explaining my model for the Kaggle Titanic competition."
-tags: []
+tags: [python, random forest, machine learning, Titanic, Kaggle]
 comments: true
 ---
 
