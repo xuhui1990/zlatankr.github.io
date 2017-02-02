@@ -12,7 +12,7 @@ url:                https://zlatankr.github.io/
 
 
 # Jekyll
-permalink:          /posts/:year/:month/:day/:title
+permalink:          posts/:year/:month/:day/:title
 markdown:           kramdown
 highlighter:        rouge
 kramdown:
