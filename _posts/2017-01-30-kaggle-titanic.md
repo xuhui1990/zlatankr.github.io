@@ -7,9 +7,10 @@ tags: [python, random forest, machine learning, Titanic, Kaggle]
 comments: true
 ---
 
-This document is a thorough overview of my process for building a predictive model for Kaggle's Titanic competition. I will provide all my essential steps in this model as well as the reasoning behind each decision I made. This model achieves a score of 82.78%, which is in the top 3% of all submissions at the time of this writing. This is a great introductory modeling exercise due to the simple nature of the data, yet there is still a lot to be gleaned from following a process that ultimately yields a high score. 
 
-## The Problem
+This document is a thorough overview of my process for building a predictive model for Kaggle's Titanic competition. I will provide all my essential steps in this model as well as the reasoning behind each decision I made. This model achieves a score of 80.38%, which is in the top 10% of all submissions at the time of this writing. This is a great introductory modeling exercise due to the simple nature of the data, yet there is still a lot to be gleaned from following a process that ultimately yields a high score. 
+
+### The Problem
 
 We are given information about a subset of the Titanic population and asked to build a predictive model that tells us whether or not a given passenger survived the shipwreck. We are given 10 basic explanatory variables, including passenger gender, age, and price of fare, among others. More details about the competition can be found on the Kaggle site, [here](https://www.kaggle.com/c/titanic). This is a classic binary classification problem, and we will be implementing a random forest classifer.
 
@@ -18,7 +19,7 @@ We are given information about a subset of the Titanic population and asked to b
 - [Hyperparameter Tuning](#hyper)
 - [Model Estimation and Evaluation](#model)
 
-## Exploratory Data Analysis<a name="eda"></a>
+### Exploratory Data Analysis<a name="eda"></a>
 
 The goal of this section is to gain an understanding of our data in order to inform what we do in the feature engineering section.  
 
@@ -179,7 +180,7 @@ train.head()
 
 
 
-#### Survived
+## Survived
 
 So we can see that 62% of the people in the training set died. This is slightly less than the estimated 67% that died in the actual shipwreck (1500/2224).
 
@@ -205,15 +206,15 @@ sns.countplot(train['Survived'])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0xa84c198>
+    <matplotlib.axes._subplots.AxesSubplot at 0xbd8f908>
 
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_15_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_15_1.png)
 
 
-#### Pclass
+## Pclass
 
 Class played a critical role in survival, as the survival rate decreased drastically for the lowest class. This variable is both useful and clean, and I will be treating it as a categorical variable. 
 
@@ -241,14 +242,14 @@ sns.countplot(train['Pclass'], hue=train['Survived'])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0xb00d278>
+    <matplotlib.axes._subplots.AxesSubplot at 0xb962c88>
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_18_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_18_1.png)
 
 
-#### Name  
+## Name  
 
 The `Name` column as provided cannot be used in the model. However, we might be able to extract some meaningful information from it.
 
@@ -371,7 +372,7 @@ pd.qcut(train['Name_Len'],5).value_counts()
 
 
 
-#### Sex
+## Sex
 
 "Women and children first," goes the famous saying. Thus, we should expect females to have a higher survival rate than males, and indeed that is the case. We expect this variable to be very useful in our model.
 
@@ -404,7 +405,7 @@ train['Survived'].groupby(train['Sex']).mean()
 
 
 
-#### Age
+## Age
 
 There are 177 nulls for `Age`, and they have a 10% lower survival rate than the non-nulls. Before imputing values for the nulls, we will include an `Age_null` flag just to make sure we can account for this characteristic of the data. 
 
@@ -460,7 +461,7 @@ pd.qcut(train['Age'],5).value_counts()
 
 
 
-#### SibSp  
+## SibSp  
 
 Upon first glance, I'm not too convinced of the importance of this variable. The distribution and survival rate between the different categories does not give me much hope.
 
@@ -503,7 +504,7 @@ train['SibSp'].value_counts()
 
 
 
-#### Parch
+## Parch
 
 Same conclusions as `Sibsp`: passengers with zero parents or children had a lower likelihood of survival than otherwise, but that survival rate was only slightly less than the overall population survival rate. 
 
@@ -548,7 +549,7 @@ train['Parch'].value_counts()
 
 When we have two seemingly weak predictors, one thing we can do is combine them to get a stronger predictor. In the case of `SibSp` and `Parch`, we can combine the two variables to get a 'family size' metric, which might (and in fact does) prove to be a better predictor than the two original variables. 
 
-#### Ticket  
+## Ticket  
 
 The `Ticket` column seems to contain unique alphanumeric values, and is thus not very useful on its own. However, we might be able to extract come predictive power from it. 
 
@@ -700,7 +701,7 @@ train.groupby(['Ticket_Lett'])['Survived'].mean()
 
 
 
-#### Fare
+## Fare
 
 There is a clear relationship between `Fare` and `Survived`, and I'm guessing that this relationship is similar to that of `Class` and `Survived`.
 
@@ -798,7 +799,7 @@ pd.crosstab(pd.qcut(train['Fare'], 5), columns=train['Pclass'])
 
 
 
-#### Cabin
+## Cabin
 
 This column has the most nulls (almost 700), but we can still extract information from it, like the first letter of each cabin, or the cabin number. The usefulness of this column might be similar to that of the `Ticket` variable.
 
@@ -908,7 +909,7 @@ train['Survived'].corr(train['Cabin_num'])
 
 
 
-#### Embarked
+## Embarked
 
 Looks like the Cherbourg people had a 20% higher survival rate than the other embarking locations. This is very likely due to the high presence of upper-class passengers from that location.
 
@@ -966,15 +967,15 @@ sns.countplot(train['Embarked'], hue=train['Pclass'])
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0xb354128>
+    <matplotlib.axes._subplots.AxesSubplot at 0xbaee438>
 
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_74_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_74_1.png)
 
 
-## Feature Engineering<a name="feat"></a>
+### Feature Engineering<a name="feat"></a>
 
 Having done our cursory exploration of the variables, we now have a pretty good idea of how we want to transform our variables in preparation for our final dataset. We will perform our feature engineering through a series of helper functions that each serve a specific purpose. 
 
@@ -997,8 +998,12 @@ Next, we impute the null values of the `Age` column by filling in the mean value
 def age_impute(train, test):
     for i in [train, test]:
         i['Age_Null_Flag'] = i['Age'].apply(lambda x: 1 if pd.isnull(x) else 0)
-        data = train.groupby(['Name_Title', 'Pclass'])['Age']
-        i['Age'] = data.transform(lambda x: x.fillna(x.mean()))
+    train['mean'] = train.groupby(['Name_Title', 'Pclass'])['Age'].transform('mean')
+    train['Age'] = train['Age'].fillna(train['mean'])
+    z = test.merge(train, on=['Name_Title', 'Pclass'], how='left').drop_duplicates(['PassengerId_x'])
+    test['Age'] = np.where(test['Age'].isnull(), z['mean'], test['Age'])
+    test['Age'] = test['Age'].fillna(test['Age'].mean())
+    del train['mean']
     return train, test
 ```
 
@@ -1015,17 +1020,12 @@ def fam_size(train, test):
     return train, test
 ```
 
-The `Ticket` column is used to create two new columns: `Ticket_Lett`, which indicates the first letter of each ticket (with the smaller-n values being grouped based on survival rate); and `Ticket_Len`, which indicates the length of the `Ticket` field. 
+The `Ticket` column is used to create `Ticket_Len`, which indicates the length of the `Ticket` field. 
 
 
 ```python
 def ticket_grouped(train, test):
     for i in [train, test]:
-        i['Ticket_Lett'] = i['Ticket'].apply(lambda x: str(x)[0])
-        i['Ticket_Lett'] = i['Ticket_Lett'].apply(lambda x: str(x))
-        i['Ticket_Lett'] = np.where((i['Ticket_Lett']).isin(['1', '2', '3', 'S', 'P', 'C', 'A']), i['Ticket_Lett'],
-                                   np.where((i['Ticket_Lett']).isin(['W', '4', '7', '6', 'L', '5', '8']),
-                                            'Low_ticket', 'Other_ticket'))
         i['Ticket_Len'] = i['Ticket'].apply(lambda x: len(x))
         del i['Ticket']
     return train, test
@@ -1117,8 +1117,8 @@ train, test = embarked_impute(train, test)
 train, test = fam_size(train, test)
 test['Fare'].fillna(train['Fare'].mean(), inplace = True)
 train, test = ticket_grouped(train, test)
-train, test = dummies(train, test, columns = ['Pclass', 'Sex', 'Embarked', 'Ticket_Lett',
-                                                                     'Cabin_Letter', 'Name_Title', 'Fam_Size'])
+train, test = dummies(train, test, columns = ['Pclass', 'Sex', 'Embarked', 
+                                              'Cabin_Letter', 'Name_Title', 'Fam_Size'])
 train, test = drop(train, test)
 ```
 
@@ -1132,11 +1132,11 @@ len(train.columns)
 
 
 
-    45
+    36
 
 
 
-## Hyperparameter Tuning<a name="hyper"></a>
+### Hyperparameter Tuning<a name="hyper"></a>
 
 We will use grid search to identify the optimal parameters of our random forest model. Because our training dataset is quite small, we can get away with testing a wider range of hyperparameter values. When I ran this on my 8 GB Windows machine, the process took less than ten minutes. 
 
@@ -1173,19 +1173,21 @@ print(gs.best_params_)
 #print(gs.cv_results_)
 ```
 
-    0.838383838384
-    {'min_samples_split': 10, 'n_estimators': 700, 'criterion': 'gini', 'min_samples_leaf': 1}
+    0.83164983165
+    {'min_samples_split': 16, 'n_estimators': 50, 'criterion': 'entropy', 'min_samples_leaf': 1}
     
 
-## Model Estimation and Evaluation<a name="model"></a>
+### Model Estimation and Evaluation<a name="model"></a>
 
-We are now ready to fit our model using the optimal hyperparameters. The out-of-bag score can give us an unbiased estimate of the model accuracy, and we can see that the score is 82.94%, which is only a little higher than our final leaderboard score.
+We are now ready to fit our model using the optimal hyperparameters. The out-of-bag score can give us an unbiased estimate of the model accuracy, and we can see that the score is 82.15%, which is a little higher than our final leaderboard score, indicating that there is some overfitting. This is to be expected due to the fact that our datasets are so small. 
 
 
 ```python
-rf = RandomForestClassifier(criterion='gini', 
-                             n_estimators=700,
-                             min_samples_split=10,
+from sklearn.ensemble import RandomForestClassifier
+
+rf = RandomForestClassifier(criterion='entropy', 
+                             n_estimators=50,
+                             min_samples_split=16,
                              min_samples_leaf=1,
                              max_features='auto',
                              oob_score=True,
@@ -1195,7 +1197,7 @@ rf.fit(train.iloc[:, 1:], train.iloc[:, 0])
 print "%.4f" % rf.oob_score_ 
 ```
 
-    0.8294
+    0.8215
     
 
 Let's take a brief look at our variable importance according to our random forest model. We can see that some of the original columns we predicted would be important in fact were, including gender, fare, and age. But we also see title, name length, and ticket length feature prominently, so we can pat ourselves on the back for creating such useful variables.
@@ -1221,104 +1223,104 @@ pd.concat((pd.DataFrame(train.iloc[:, 1:].columns, columns = ['variable']),
   </thead>
   <tbody>
     <tr>
-      <th>12</th>
-      <td>Sex_female</td>
-      <td>0.111215</td>
+      <th>24</th>
+      <td>Name_Title_Mr.</td>
+      <td>0.118933</td>
     </tr>
     <tr>
       <th>11</th>
       <td>Sex_male</td>
-      <td>0.109769</td>
+      <td>0.117224</td>
     </tr>
     <tr>
-      <th>33</th>
-      <td>Name_Title_Mr.</td>
-      <td>0.109746</td>
+      <th>12</th>
+      <td>Sex_female</td>
+      <td>0.103027</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Fare</td>
-      <td>0.088209</td>
+      <td>0.100483</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Name_Len</td>
-      <td>0.087904</td>
+      <td>0.090686</td>
     </tr>
     <tr>
       <th>0</th>
       <td>Age</td>
-      <td>0.078651</td>
+      <td>0.083701</td>
     </tr>
     <tr>
       <th>8</th>
       <td>Pclass_3</td>
-      <td>0.043268</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>Name_Title_Miss.</td>
-      <td>0.031292</td>
+      <td>0.048949</td>
     </tr>
     <tr>
       <th>7</th>
       <td>Ticket_Len</td>
-      <td>0.031079</td>
+      <td>0.042627</td>
     </tr>
     <tr>
-      <th>34</th>
-      <td>Name_Title_Mrs.</td>
-      <td>0.028852</td>
+      <th>16</th>
+      <td>Cabin_Letter_n</td>
+      <td>0.031384</td>
     </tr>
     <tr>
       <th>25</th>
-      <td>Cabin_Letter_n</td>
-      <td>0.027893</td>
+      <td>Name_Title_Mrs.</td>
+      <td>0.030985</td>
     </tr>
     <tr>
-      <th>43</th>
+      <th>26</th>
+      <td>Name_Title_Miss.</td>
+      <td>0.030213</td>
+    </tr>
+    <tr>
+      <th>34</th>
       <td>Fam_Size_Big</td>
-      <td>0.025199</td>
+      <td>0.029639</td>
     </tr>
     <tr>
-      <th>41</th>
+      <th>32</th>
       <td>Fam_Size_Nuclear</td>
-      <td>0.022704</td>
+      <td>0.024520</td>
     </tr>
     <tr>
       <th>9</th>
       <td>Pclass_1</td>
-      <td>0.021810</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>Ticket_Lett_1</td>
-      <td>0.017999</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>Ticket_Lett_3</td>
-      <td>0.012902</td>
+      <td>0.021438</td>
     </tr>
     <tr>
       <th>10</th>
       <td>Pclass_2</td>
-      <td>0.012345</td>
-    </tr>
-    <tr>
-      <th>36</th>
-      <td>Name_Title_Master.</td>
-      <td>0.012098</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>Ticket_Lett_Low_ticket</td>
-      <td>0.011723</td>
+      <td>0.015316</td>
     </tr>
     <tr>
       <th>13</th>
       <td>Embarked_S</td>
-      <td>0.011546</td>
+      <td>0.012805</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Name_Title_Master.</td>
+      <td>0.012017</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>Fam_Size_Solo</td>
+      <td>0.011167</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Cabin_num_[2, 28.667]</td>
+      <td>0.010763</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Age_Null_Flag</td>
+      <td>0.009124</td>
     </tr>
   </tbody>
 </table>
@@ -1330,11 +1332,23 @@ Our last step is to predict the target variable for our test data and generate a
 
 
 ```python
+np.shape(test)
+```
+
+
+
+
+    (418, 35)
+
+
+
+
+```python
 predictions = rf.predict(test)
 predictions = pd.DataFrame(predictions, columns=['Survived'])
 test = pd.read_csv(os.path.join('data', 'test.csv'))
 predictions = pd.concat((test.iloc[:, 0], predictions), axis = 1)
-predictions.to_csv(os.path.join('submission_files', 'y_test15.csv'), sep=",", index = False)
+predictions.to_csv(os.path.join('submission_files', 'y_test.csv'), sep=",", index = False)
 ```
 
 ## Conclusion
