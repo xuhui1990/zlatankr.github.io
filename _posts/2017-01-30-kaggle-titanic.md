@@ -211,7 +211,7 @@ sns.countplot(train['Survived'])
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_15_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_15_1.png)
 
 
 ## Pclass
@@ -246,7 +246,7 @@ sns.countplot(train['Pclass'], hue=train['Survived'])
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_18_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_18_1.png)
 
 
 ## Name  
@@ -972,7 +972,7 @@ sns.countplot(train['Embarked'], hue=train['Pclass'])
 
 
 
-![png](/assets/img/Titanic%20Model%20Walk-Through_files/Titanic%20Model%20Walk-Through_74_1.png)
+![png](/assets/img/Titanic%20Model%20Walk-Through_74_1.png)
 
 
 ### Feature Engineering<a name="feat"></a>
