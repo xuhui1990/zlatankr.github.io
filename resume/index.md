@@ -20,19 +20,19 @@ comments: false
 
 ### **Senior Manager of Analytics** , InsideTrack. San Francisco, CA. Jan 2014 – Oct 2016
 
-- Managed team of analysts responsible for internal and external reporting, performance measurement, modeling, and decision algorithms.
-- Developed standard internal and external metrics, reports, and dashboards.
-- Built out infrastructure for automated development and delivery of all analytics products.
-- Partnered with stakeholders to ensure they have proper visibility into performance; collaborated with upstream teams to ensure data flow is calibrated toward organizational reporting.
+- Managed team of analysts responsible for predictive modeling, decision algorithms, internal/external reporting, and performance measurement.
+- Developed standardized internal and external metrics, reports, and dashboards.
+- Managed data warehouse team and built infrastructure for automated development and delivery of all analytics products.
+- Partnered with engineering and data teams to ensure data flow is calibrated toward operational analytics; ensured stakeholders gained value from analytics.
 - Maintained a portfolio of clients as an analyst while leading team.
 
 ### **Senior Analyst** , InsideTrack. San Francisco, CA. Feb 2012 – Jan 2014
 
 - Automated client and internal reporting through T-SQL, SSRS, and Tableau Server.
-- Measured and communicated impact of coaching on student enrollment and retention.
 - Created predictive models of student retention and engagement.
+- Measured and communicated impact of coaching on student enrollment and retention.
 - Managed data flow between client and internal databases.
-- Developed strategies for optimal client service delivery and created success metrics.
+- Developed client success metrics and strategies for optimal service delivery.
 
 Notable:
 
@@ -62,7 +62,7 @@ Notable:
 ### **Assistant Market Research Analyst** , VLSI Research, Santa Clara, CA. Oct 2007 – May 2009
 
 - Financial analysis, forecasting, and market research of hundreds of companies in the semiconductor equipment and related industries.
-- Created, updated, and analyzed Excel-based models.
+- Created, maintained, and analyzed Excel-based models.
 - Wrote technical study papers and company press releases.
 - Interacted with current and potential clients on a regular basis.
 
@@ -79,7 +79,7 @@ Notable:
 
 ### University of California, Santa Barbara, 2003-2007
 
-- Bachelor of Science in Business Economics: 3.25 GPA
+- Bachelor of Science in Business Economics: 3.3 GPA
 - Bachelor of Arts in English: 3.3 GPA
 
 References, performance reviews, and transcripts available upon request.
