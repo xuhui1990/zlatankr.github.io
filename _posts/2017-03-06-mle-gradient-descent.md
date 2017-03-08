@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Maximum Likelihood and Gradient Descent Demonstration"
+title: "Maximum likelihood and gradient descent demonstration"
 date: 2017-03-06
 excerpt: "A mathematical and python tutorial using logistic regression."
 tags: [python, maximum likelihood, gradient descent, logistic regression]
