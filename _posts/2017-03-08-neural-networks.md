@@ -7,7 +7,7 @@ tags: [python, neural networks, gradient descent]
 comments: true
 ---
 
-In this discussion, we walk through the key principles behind neural networks. We will illustrate the algorithm conceptually, solidify that understanding with a mathematical derivation, and finally we implement the model in code.
+In this discussion, we walk through the key principles behind neural networks. We will illustrate the algorithm conceptually, solidify that understanding with a mathematical derivation, and finally we will implement the model in code.
 
 ### Neural network feed-forward mechanism
 
@@ -107,15 +107,11 @@ Now, given that _y_ is
 
 This means that the predicted probability of a given class actually depends on all the classes due to the summation below. This certainly complicates our derivative of _y_, because we must calculate the derivative for two scenarios: one where _k=k'_ and one where _k≠k'_. The full derivation is shown as the appendix of this document. What we get is: 
 
-\begin{align}
-\large \frac{\partial y_{k'}}{\partial a_k} = \left\{ {y_{k'}(1-y_{k'}) \text{  if  } k=k'}\atop {-y_{k'}y_k \text{  if  } k\neq k'}\right.
-\end{align}
+$$ \large \frac{\partial y_{k'}}{\partial a_k} = \left\{ {y_{k'}(1-y_{k'}) \text{  if  } k=k'}\atop {-y_{k'}y_k \text{  if  } k\neq k'}\right. $$
 
 Using the Kronecker delta:
 
-\begin{align}
-\large \delta_{ij} = \left\{1 \text{  if  } i=j\atop {0 \text{  if  } i\neq j}\right.
-\end{align}
+$$ \large \delta_{ij} = \left\{1 \text{  if  } i=j\atop {0 \text{  if  } i\neq j}\right. $$
 
 We get:
 
@@ -183,15 +179,11 @@ Starting from the output and working our way backward as we did before, first we
 
 Then, the weights that feed into the last hidden layer have already been shown to be:
 
-\begin{align}
-\large\frac{\partial J}{\partial W^2_{rs}} = \sum_n(t_k^n-y_k^n)W_{sk}^3z_s^3(1-z_s^3)z_r^2
-\end{align}
+$$ \large\frac{\partial J}{\partial W^2_{rs}} = \sum_n(t_k^n-y_k^n)W_{sk}^3z_s^3(1-z_s^3)z_r^2 $$
 
 Next, the derivative of the objective function with respect to _W1_ is:
 
-\begin{align}
-\large\frac{\partial J}{\partial W^1_{qr}} = \sum_n(t_k^n-y_k^n)W_{sk}^3z_s^3(1-z_s^3)W_{rs}^2z_r^2(1-z_r^2)z_q^1
-\end{align}
+$$ \large\frac{\partial J}{\partial W^1_{qr}} = \sum_n(t_k^n-y_k^n)W_{sk}^3z_s^3(1-z_s^3)W_{rs}^2z_r^2(1-z_r^2)z_q^1 $$
 
 As we can see, a clear pattern emerges as we backpropagate, and we see more and more repetition within each layer. 
 
