@@ -13,7 +13,7 @@ In this discussion, we walk through the key principles behind neural networks. W
 
 The diagram below illustrates the basic architecture behind a neural network. We have a set of inputs denoted by _x_. These inputs are then fed to the hidden layer _Z_ through an activation by their corresponding weights, _w_. The hidden layer performs a transformation of the activation function using a nonlinear 'transfer function.' Subsequently, each of the hidden units is then passed through their own activation functions via the weights _v_. Lastly, the output, consisting of k-classes for a given observation, is then normalized so that the output for a given class represents the probability of that class for the given sample.
 
-<img src="/assets/img/NN.png" width="500" height="500" />
+<img src="/assets/img/NN.png" />
 
 In this example of forward propagation, we can see that we move from the inputs to each hidden unit by taking the sigmoid of the activation function. 
 
