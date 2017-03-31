@@ -3,7 +3,7 @@ layout: post
 title: "Neural networks"
 date: 2017-03-08
 excerpt: "A demonstration of forward and backpropagation using mathematical derivation and python."
-tags: [python, neural networks, gradient descent]
+tags: [python, neural networks, gradient descent, deep learning]
 comments: true
 ---
 
