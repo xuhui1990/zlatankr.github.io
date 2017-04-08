@@ -51,10 +51,10 @@ In our scientific problem of trying to draw a conclusion about a parameter given
 \end{align}
 
 Here,  
- - P(θ|X) is known as the posterior, meaning our new beliefs about our parameter in question, θ, given our data X.  
- - P(X|θ) is known as the likelihood, anwsering the question of how likely is our data given our current θ. 
+ - P(θ\|X) is known as the posterior, meaning our new beliefs about our parameter in question, θ, given our data X.  
+ - P(X\|θ) is known as the likelihood, anwsering the question of how likely is our data given our current θ. 
  - P(θ) is the prior, meaning our old beliefs about θ.
- - P(X) is the integral over P(X|θ)P(θ)dθ, but because it doesn't contain θ, it can be ignored as a normalizing constant.  
+ - P(X) is the integral over P(X\|θ)P(θ)dθ, but because it doesn't contain θ, it can be ignored as a normalizing constant.  
  
 Now we can see the Bayesian paradigm shift. Unlike the frequentist method, here we take into account the distribution of our parameter both before and after the collecting the data. Knowing the distribution of our parameter will allow us to assign a given confidence to our estimate of that parameter. 
 
@@ -86,7 +86,7 @@ This would simplify into:
 \large P(\theta \mid X) \propto \theta^{a-1+\sum_{i=1}^Nx_i}(1-\theta)^{b-1+\sum_{i=1}^N(1-x_i)}
 \end{align}
 
-Thus, we can see that P(θ|X) does in fact have a Beta distribution, but with slightly modified hyperparameters. Let's look a little closer. We can conclude that
+Thus, we can see that P(θ\|X) does in fact have a Beta distribution, but with slightly modified hyperparameters. Let's look a little closer. We can conclude that
 
 \begin{align}
 \ P(\theta \mid X) = Beta(a',b')
@@ -254,9 +254,9 @@ Mathematically, we can calculate this as:
 As with most battles between intellectually viable sides, there is usually no clear winner. And so it is with Bayesian and frequentist methodologies. Both offer their own interesting solutions to the problem of A/B testing, and it is best to first evaluate the scenario before choosing an approach. The last link in the references below offers some good tips as to when bandit tests (which include our Thomspon sampling) are applicable.
 
 ### References:
-- https://en.wikipedia.org/wiki/Conjugate_prior#Table_of_conjugate_distributions
- - http://www.evanmiller.org/bayesian-ab-testing.html
- - https://www.udemy.com/bayesian-machine-learning-in-python-ab-testing
- - https://en.wikipedia.org/wiki/Likelihood_principle#The_voltmeter_story
- - http://varianceexplained.org/r/bayesian-ab-testing/
- - https://conversionxl.com/bandit-tests/
+ - <https://en.wikipedia.org/wiki/Conjugate_prior#Table_of_conjugate_distributions>
+ - <http://www.evanmiller.org/bayesian-ab-testing.html>
+ - <https://www.udemy.com/bayesian-machine-learning-in-python-ab-testing>
+ - <https://en.wikipedia.org/wiki/Likelihood_principle#The_voltmeter_story>
+ - <http://varianceexplained.org/r/bayesian-ab-testing/>
+ - <https://conversionxl.com/bandit-tests/>
