@@ -44,7 +44,7 @@ In our example, we will actually convert the objective function (which we would 
 
 ### Gradient Descent
 
-Once we have an objective function, we can generally take its derivative with respect to the parameters (weigths), set it equal to zero, and solve for the parameters to obtain the ideal solution. However, in the case of logistic regression (and many other complex or otherwise non-linear systems), this analytical method doesn't work. Instead, we resort to a method known as gradient descent, whereby we randomly initialize and then incrementally update our weights by calculating the slope of our objective function. When applying the cost function, we want to continue updating our weights until the slope of the _gradient_ gets as close to zero as possible. We can show this mathematically:
+Once we have an objective function, we can generally take its derivative with respect to the parameters (weights), set it equal to zero, and solve for the parameters to obtain the ideal solution. However, in the case of logistic regression (and many other complex or otherwise non-linear systems), this analytical method doesn't work. Instead, we resort to a method known as gradient descent, whereby we randomly initialize and then incrementally update our weights by calculating the slope of our objective function. When applying the cost function, we want to continue updating our weights until the slope of the _gradient_ gets as close to zero as possible. We can show this mathematically:
 
 \begin{align}
 \ w:=w+\triangle w
@@ -65,7 +65,7 @@ Thus, we want to take the derivative of the cost function with respect to the we
 Thus, we are looking to obtain three different derivatives. Let us start by solving for the derivative of the cost function with respect to _y_:
 
 \begin{align}
-\frac{\partial J}{\partial y_n} = - t_n \frac{1}{y_n} + (1-t_n) \frac{1}{1-y_n}(-1) = \frac{t_n}{y_n} - \frac{1-t_n}{1-y_n}
+\frac{\partial J}{\partial y_n} = t_n \frac{1}{y_n} + (1-t_n) \frac{1}{1-y_n}(-1) = \frac{t_n}{y_n} - \frac{1-t_n}{1-y_n}
 \end{align}
 
 Next, let us solve for the derivative of _y_ with respect to our activation function:
@@ -99,7 +99,7 @@ And lastly, we solve for the derivative of the activation function with respect 
 Now we can put it all together and simply.
 
 \begin{align}
-\frac{\partial J}{\partial w_i} = - \displaystyle\sum_{n=1}^N\frac{t_n}{y_n}(1-y_n)x_{ni}-\frac{1-t_n}{1-y_n}y_n(1-y_n)x_{ni}
+\frac{\partial J}{\partial w_i} = - \displaystyle\sum_{n=1}^N\frac{t_n}{y_n}y_n(1-y_n)x_{ni}-\frac{1-t_n}{1-y_n}y_n(1-y_n)x_{ni}
 \end{align}
 
 \begin{align}
